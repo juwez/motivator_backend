@@ -161,7 +161,6 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-
         /*
          * Package Service Providers...
          */
@@ -174,9 +173,8 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-
+        App\Providers\DiServiceProvider::class,
     ],
-
     /*
     |--------------------------------------------------------------------------
     | Class Aliases
@@ -187,7 +185,6 @@ return [
     | the aliases are "lazy" loaded so they don't hinder performance.
     |
     */
-
     'aliases' => [
 
         'App' => Illuminate\Support\Facades\App::class,
@@ -228,5 +225,4 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
     ],
-
 ];
