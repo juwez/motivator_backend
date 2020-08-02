@@ -14,11 +14,6 @@ class TasksRepo implements ITasksRepo, ICrudRepo
         return \Exception::class();
     }
 
-    public function Get()
-    {
-        // TODO: Implement Get() method.
-    }
-
     public function Update()
     {
         // TODO: Implement Update() method.
@@ -32,5 +27,15 @@ class TasksRepo implements ITasksRepo, ICrudRepo
     public function Create()
     {
         // TODO: Implement Create() method.
+    }
+
+    public function GetByParameter($parameter)
+    {
+        // TODO: Implement GetByParameter() method.
+    }
+
+    public function Get()
+    {
+        // TODO: Implement Get() method.
     }
 }

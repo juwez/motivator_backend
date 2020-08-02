@@ -5,8 +5,9 @@ namespace App\Providers;
 
 
 use Carbon\Laravel\ServiceProvider;
+use Illuminate\Contracts\Support\DeferrableProvider;
 
-class DiServiceProvider extends ServiceProvider
+class DiServiceProvider extends ServiceProvider implements DeferrableProvider
 {
     public function register()
     {

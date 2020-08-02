@@ -11,6 +11,4 @@ interface ICrudRepo
     public function Get();
     public function Update();
     public function Delete();
-
-
 }

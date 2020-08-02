@@ -24,7 +24,13 @@ Route::post('logout', 'AuthController@logout')->name("auth.logout");
 Route::post('refresh', 'AuthController@refresh')->name("auth.refresh");
 Route::get('me', 'AuthController@me')->name("auth.me");
 //this is to protect the routes with jwt
-Route::middleware(['auth.jwt'])->group( function () {});
+Route::middleware(['auth.jwt'])->group( function () {
+    Route::get("/cards/{id}", "CardApiController@find")->name("cards.find");
+    Route::get("/cards", "CardApiController@all")->name("cards.all");
+
+});
 
 Route::get('tasks','TaskController@GetTasks');
+Route::post("profile","UserController@Login");
+route::put("profile","UserController@Register");
 //route::post('login',)

@@ -6,9 +6,17 @@ namespace App\Repositories\Code;
 
 use App\Repositories\Interfaces\ICrudRepo;
 use App\Repositories\Interfaces\IUserRepo;
+use App\User;
+use Illuminate\Http\Request;
+
 
 class UserRepo implements IUserRepo, ICrudRepo
 {
+
+    public function Create()
+    {
+        // TODO: Implement Create() method.
+    }
 
     public function GetAll()
     {
@@ -30,8 +38,14 @@ class UserRepo implements IUserRepo, ICrudRepo
         // TODO: Implement Delete() method.
     }
 
-    public function Create()
+    /**
+     * @param Request $request
+     * @return mixed
+     */
+    public function RegisterUser(Request $request)
     {
-        // TODO: Implement Create() method.
+        $input = $request -> all();
+        $input['password']=bcrypt($input['password']);
+        return User::create($input);
     }
 }
