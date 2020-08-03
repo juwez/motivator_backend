@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\userRegisterRequest;
 use App\Repositories\Interfaces\IUserRepo;
+use Illuminate\Http\Request;
+
 
 class UserController extends Controller
 {
@@ -14,17 +15,17 @@ class UserController extends Controller
         $this->repo = $repo;
     }
 
-    public function register(userRegisterRequest $request)
+    public function register(Request $request)
     {
-        $user = ($this->repo->registerUser($request));
+        $user = $this->repo->registerUser($request);
         $token = auth('api')->login($user);
         return $this->respondWithToken($token);
     }
 
 
-    public function login()
+    public function Login()
     {
-        $credentials = request(['email', 'password']);
+        $credentials = request(['email','password']);
         if (!$token = auth('api')->attempt($credentials)) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
@@ -40,10 +41,8 @@ class UserController extends Controller
     public function logout()
     {
         auth('api')->logout();
-
         return response()->json(['message' => 'Successfully logged out']);
     }
-
     public function refresh()
     {
         return $this->respondWithToken(auth('api')->refresh());
