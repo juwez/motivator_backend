@@ -8,10 +8,19 @@ use App\Repositories\Interfaces\ICrudRepo;
 
 class TasksRepo implements ITasksRepo, ICrudRepo
 {
+    public function Create()
+    {
+        // TODO: Implement Create() method.
+    }
+
     public function GetAll()
     {
         // TODO: Implement GetAll() method.
-        return \Exception::class();
+    }
+
+    public function Get($parameter)
+    {
+        // TODO: Implement Get() method.
     }
 
     public function Update()
@@ -22,20 +31,5 @@ class TasksRepo implements ITasksRepo, ICrudRepo
     public function Delete()
     {
         // TODO: Implement Delete() method.
-    }
-
-    public function Create()
-    {
-        // TODO: Implement Create() method.
-    }
-
-    public function GetByParameter($parameter)
-    {
-        // TODO: Implement GetByParameter() method.
-    }
-
-    public function Get()
-    {
-        // TODO: Implement Get() method.
     }
 }

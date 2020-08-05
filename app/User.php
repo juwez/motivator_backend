@@ -10,10 +10,17 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 
 /**
  * @method static create($email, $password)
+ * @method static where(string $string, $email)
  */
 class User extends Authenticatable implements JWTSubject
 {
     use Notifiable;
+    public function tasks()
+    {
+        return $this->hasMany('App\Task');
+    }
+    public $timestamps = false;
+
     protected $fillable = ['email', 'password'];
     protected $hidden = [
         'password', 'remember_token',
@@ -34,10 +41,6 @@ class User extends Authenticatable implements JWTSubject
         if ( !empty($password) ) {
             $this->attributes['password'] = bcrypt($password);
         }
-    }
-    public function tasks()
-    {
-        return $this->hasMany('App\Task');
     }
 
 }

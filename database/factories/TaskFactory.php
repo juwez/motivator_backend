@@ -7,12 +7,12 @@ use App\User;
 use Faker\Generator as Faker;
 
 $factory->define(Task::class, function (Faker $faker) {
-    $users = User::all()->pluck('id')->toArray();
+    $users = User::all()->pluck('email')->toArray();
     return [
         'name' => $faker->name,
         'priority' => $faker->numberBetween(1,3),
         'datetime' => $faker->dateTimeBetween('now','+30 days'),
         'completed' => $faker->boolean(),
-        'user_id' => $faker->randomElement($users)
+        'email' => $faker->randomElement($users)
     ];
 });

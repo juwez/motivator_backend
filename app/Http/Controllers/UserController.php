@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Repositories\Interfaces\IUserRepo;
 use Illuminate\Http\Request;
 
-
 class UserController extends Controller
 {
     private $repo;
@@ -21,28 +20,24 @@ class UserController extends Controller
         $token = auth('api')->login($user);
         return $this->respondWithToken($token);
     }
-
-
     public function Login()
     {
-        $credentials = request(['email','password']);
+        $credentials = request(['email', 'password']);
         if (!$token = auth('api')->attempt($credentials)) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
         return $this->respondWithToken($token);
     }
-
     public function me()
     {
         return response()->json(auth('api')->user());
     }
-
-
     public function logout()
     {
         auth('api')->logout();
         return response()->json(['message' => 'Successfully logged out']);
     }
+
     public function refresh()
     {
         return $this->respondWithToken(auth('api')->refresh());
