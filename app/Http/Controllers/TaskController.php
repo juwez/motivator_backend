@@ -11,14 +11,8 @@ class TaskController extends Controller
     {
         $this -> repo = $repo;
     }
-
-    public function GetTasksOfUser($email)
-    {
-        return response() -> json(["tasks" => $this -> repo -> GetAll() ]);
-    }
     public function GetNextTask($email){
         return response($this->repo->GetNextTask($email),200);
-
     }
     public function GetUserTasks($email)
     {

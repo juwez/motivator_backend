@@ -33,17 +33,19 @@ class TasksRepo implements ITasksRepo, ICrudRepo
     {
         // TODO: Implement Delete() method.
     }
+
     public function GetUserTasks($email)
     {
-        $tasks = Task::where("email",$email)->get()->toArray();
-        return (!empty($tasks)) ? $tasks:null;
+        $tasks = Task::where("email", $email)->get()->toArray();
+        return (!empty($tasks)) ? $tasks : null;
     }
 
     public function GetNextTask($email)
     {
-        $date=now();
-        dd($date);
-        $tasks = Task::where("email",$email)
-            ::where("datetime",">",date(y-m-d))->get();
+        $task = Task::where("email", $email)
+            ->where("datetime", ">", now())
+            ->orderBy("datetime")
+            ->first();
+        return(isset($task)?$task:null);
     }
 }
