@@ -41,6 +41,9 @@ class TasksRepo implements ITasksRepo, ICrudRepo
 
     public function GetNextTask($email)
     {
-        $tasks = Task::where("email",$email)::where()->get();
+        $date=now();
+        dd($date);
+        $tasks = Task::where("email",$email)
+            ::where("datetime",">",date(y-m-d))->get();
     }
 }
