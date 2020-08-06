@@ -15,16 +15,19 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 class User extends Authenticatable implements JWTSubject
 {
     use Notifiable;
-    public function tasks()
-    {
-        return $this->hasMany('App\Task');
-    }
+
     public $timestamps = false;
 
     protected $fillable = ['email', 'password'];
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function tasks()
+    {
+        return $this->hasMany('App\Task',"email");
+    }
+
 
     public function getJWTIdentifier()
     {

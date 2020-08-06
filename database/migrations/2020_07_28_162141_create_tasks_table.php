@@ -20,10 +20,7 @@ class CreateTasksTable extends Migration
             $table->dateTime('datetime');
             $table->boolean('completed');
             $table->String('email');
-        });
-        schema::table('tasks',function (Blueprint $table){
             $table->foreign('email')->references('email')->on('users');
-
         });
     }
 

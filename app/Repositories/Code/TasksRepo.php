@@ -5,6 +5,7 @@ namespace App\Repositories\Code;
 
 use App\Repositories\Interfaces\ITasksRepo;
 use App\Repositories\Interfaces\ICrudRepo;
+use App\Task;
 
 class TasksRepo implements ITasksRepo, ICrudRepo
 {
@@ -31,5 +32,15 @@ class TasksRepo implements ITasksRepo, ICrudRepo
     public function Delete()
     {
         // TODO: Implement Delete() method.
+    }
+    public function GetUserTasks($email)
+    {
+        $tasks = Task::where("email",$email)->get()->toArray();
+        return (!empty($tasks)) ? $tasks:null;
+    }
+
+    public function GetNextTask($email)
+    {
+        $tasks = Task::where("email",$email)::where()->get();
     }
 }

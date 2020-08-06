@@ -3,20 +3,25 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\Interfaces\ITasksRepo;
-use App\Repositories\Interfaces\IUserTaskRepo;
-use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
-    private $ITaskRepo;
-    private $IUserTaskRepo;
-    public function __construct(ITasksRepo $ITaskRepo,IUserTaskRepo $IUserTaskRepo)
+    private $repo;
+    public function __construct(ITasksRepo $repo)
     {
-        $this -> ITaskRepo = $ITaskRepo;
+        $this -> repo = $repo;
     }
 
     public function GetTasksOfUser($email)
     {
-        return response() -> json(["tasks" => $this -> ItaskRepo -> GetAll() ]);
+        return response() -> json(["tasks" => $this -> repo -> GetAll() ]);
+    }
+    public function GetNextTask($email){
+        return response($this->repo->GetNextTask($email),200);
+
+    }
+    public function GetUserTasks($email)
+    {
+        return response($this->repo->GetUserTasks($email),200);
     }
 }
