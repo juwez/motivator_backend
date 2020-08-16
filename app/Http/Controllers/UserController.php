@@ -16,9 +16,9 @@ class UserController extends Controller
 
     public function register(Request $request)
     {
-        $user = $this->repo->registerUser($request);
+        $user =$this->repo->registerUser($request);
         $token = auth('api')->login($user);
-        return $this->respondWithToken($token);
+        return response("registered",201);
     }
     public function Login()
     {
@@ -26,7 +26,7 @@ class UserController extends Controller
         if (!$token = auth('api')->attempt($credentials)) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
-        return $this->respondWithToken($token);
+        return response($this->respondWithToken($token),200);
     }
     public function me()
     {
@@ -48,7 +48,7 @@ class UserController extends Controller
         return response()->json([
             'access_token' => $token,
             'token_type' => 'bearer',
-            'expires_in' => auth('api')->factory()->getTTL() * 60
+            //'expires_in' => 60 * auth('api')->factory()->getTTL()
         ]);
     }
 }

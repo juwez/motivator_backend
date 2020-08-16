@@ -30,8 +30,8 @@ Route::middleware(['auth.jwt'])->group( function () {
 
 });
 
-Route::post("user/login","UserController@Login");
-route::put("user/register","UserController@Register");
-route::get("user/{email}/tasks","TaskController@GetUserTasks");
-route::get("user/{email}/tasks/next","TaskController@GetNextTask");
+Route::post("users/login","UserController@Login");
+route::post("users/register","UserController@Register");
+route::get("users/{email}/tasks/all","TaskController@GetUserTasks");
+route::get("users/{email}/tasks/next","TaskController@GetNextTask");
 
